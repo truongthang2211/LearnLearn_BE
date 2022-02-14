@@ -4,13 +4,16 @@ export interface UserDocument extends mongoose.Document {
   email: string;
   username: string;
   password: string;
+  fullname: string;
+  refreshToken: Array<string>;
   createdAt: Date;
   updatedAt: Date;
 }
 const userSchema = new mongoose.Schema(
   {
-    username: {
+    fullname: {
       type: String,
+      maxlength: 50,
       required: true,
     },
     email: {
@@ -24,6 +27,11 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: null,
       minlength: 3,
+      select: false,
+    },
+    refreshToken: {
+      type: Array,
+      default: [],
     },
     admin: {
       type: Boolean,
