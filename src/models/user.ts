@@ -1,4 +1,3 @@
-import exp from "constants";
 import mongoose from "mongoose";
 export interface UserDocument extends mongoose.Document {
   email: string;
@@ -6,6 +5,7 @@ export interface UserDocument extends mongoose.Document {
   password: string;
   fullname: string;
   refreshToken: Array<string>;
+  resetPasswordToken: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -32,6 +32,10 @@ const userSchema = new mongoose.Schema(
     refreshToken: {
       type: Array,
       default: [],
+    },
+    resetPasswordToken: {
+      type: String,
+      default: null,
     },
     admin: {
       type: Boolean,
